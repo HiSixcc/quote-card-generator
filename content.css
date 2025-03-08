@@ -1,0 +1,356 @@
+/**
+ * 内容脚本的样式文件
+ */
+
+/* 使用Google Fonts提供的开源中文字体 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&family=Long+Cang&display=swap');
+
+/* 您已下载的字体 */
+@font-face {
+  font-family: "FZKai-Z03";
+  src: url("chrome-extension://__MSG_@@extension_id__/fonts/FZKai-Z03.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HuXiaoBoNanShenTi";
+  src: url("chrome-extension://__MSG_@@extension_id__/fonts/HuXiaoBoNanShenTi-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ZCOOL QingKe HuangYou";
+  src: url("chrome-extension://__MSG_@@extension_id__/fonts/ZCOOLQingKeHuangYou-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 选择文本后显示的图标 */
+.quote-card-selection-icon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  animation: pulse 2s infinite;
+}
+
+.quote-card-selection-icon:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  animation: none;
+}
+
+.quote-card-selection-icon:active {
+  transform: scale(0.95);
+}
+
+/* 卡片生成器容器 */
+.quote-card-generator-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.quote-card-generator-modal {
+  width: 800px;
+  max-width: 90%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.quote-card-generator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.quote-card-generator-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.quote-card-generator-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+}
+
+.quote-card-generator-content {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.quote-card-preview {
+  flex: 1;
+  min-height: 300px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-card-text {
+  width: 100%;
+  word-break: break-word;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.quote-card-controls {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.theme-selector,
+.align-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-selector button,
+.align-selector button,
+.font-selector button {
+  padding: 6px 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.theme-selector button.active,
+.align-selector button.active,
+.font-selector button.active {
+  background-color: #4285f4;
+  color: white;
+  border-color: #4285f4;
+}
+
+.color-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.color-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-group span {
+  font-size: 12px;
+  color: #666;
+  width: 40px;
+}
+
+.color-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.color-btn.active {
+  border-color: #4285f4;
+}
+
+.font-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.export-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.export-selector select {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+}
+
+.quote-card-generator-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.download-btn {
+  padding: 8px 20px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.download-btn:hover {
+  background-color: #3367d6;
+}
+
+/* 主题样式 */
+.quote-card-preview.simple {
+  background-color: #fff;
+}
+
+.quote-card-preview.vintage {
+  background-color: #f8f3e9;
+}
+
+.quote-card-preview.modern {
+  background-color: #f5f5f7;
+}
+
+/* 背景颜色 */
+.bg-color-1 {
+  background-color: #f8f9fa;
+}
+
+.bg-color-2 {
+  background-color: #e8f4f8;
+}
+
+.bg-color-3 {
+  background-color: #f9f2f4;
+}
+
+.bg-gradient-1 {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.bg-gradient-2 {
+  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+
+.bg-gradient-3 {
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+/* 字体样式 */
+.font-1 .quote-card-text {
+  font-family: "FZKai-Z03", "STKaiti", serif;
+}
+
+.font-2 .quote-card-text {
+  font-family: "HuXiaoBoNanShenTi", sans-serif;
+}
+
+.font-3 .quote-card-text {
+  font-family: "ZCOOL QingKe HuangYou", sans-serif;
+}
+
+.font-4 .quote-card-text {
+  font-family: "Noto Serif SC", serif;
+}
+
+.font-5 .quote-card-text {
+  font-family: "SimSun", "宋体", serif;
+}
+
+.font-6 .quote-card-text {
+  font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+
+/* 对齐方式 */
+.align-left .quote-card-text {
+  text-align: left;
+}
+
+.align-center .quote-card-text {
+  text-align: center;
+}
+
+.align-right .quote-card-text {
+  text-align: right;
+}
+
+/* 颜色按钮样式 */
+[data-color="bg-color-1"] {
+  background-color: #f8f9fa;
+}
+
+[data-color="bg-color-2"] {
+  background-color: #e8f4f8;
+}
+
+[data-color="bg-color-3"] {
+  background-color: #f9f2f4;
+}
+
+[data-color="bg-gradient-1"] {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+[data-color="bg-gradient-2"] {
+  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+
+[data-color="bg-gradient-3"] {
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+} 
