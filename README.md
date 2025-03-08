@@ -1,4 +1,56 @@
-# 产品说明
+# 金句卡片生成器 | Quote Card Generator
+
+## 项目简介
+金句卡片生成器是一款Chrome浏览器扩展，它能够将网页中选中的文字转换为精美的卡片图片。无论是名人名言、读书笔记，还是个人感悟，都能通过这款工具变成令人印象深刻的视觉作品。
+
+## 主要功能
+- 🎯 一键捕捉：选中文字后自动显示悬浮图标，点击即可生成卡片
+- 🎨 多样主题：提供简约、复古、现代三种主题风格
+- 📝 丰富字体：支持6种精选字体，适合不同场景使用
+- 🌈 精美背景：3种纯色背景和3种渐变背景可选
+- 📏 灵活布局：支持左对齐、居中、右对齐三种排版方式
+- 📤 高质导出：支持PNG、JPG、WEBP三种格式，可选不同质量
+
+## 安装方法
+1. 访问 [Chrome Web Store](https://chrome.google.com/webstore/detail/[您的扩展ID])
+2. 点击"添加到Chrome"按钮
+3. 确认安装权限
+
+## 使用说明
+1. 在网页上选中想要生成卡片的文字
+2. 点击出现的悬浮图标或使用右键菜单
+3. 在弹出的编辑器中自定义卡片样式
+4. 点击下载按钮保存卡片图片
+
+## 技术特点
+- 基于Chrome Extension Manifest V3开发
+- 使用Service Worker实现后台功能
+- 采用Content Scripts实现页面交互
+- 集成html2canvas实现图片导出
+- 支持Google Fonts在线字体
+
+## 开发环境
+- Chrome 88+
+- Manifest V3
+- JavaScript ES6+
+- HTML5/CSS3
+
+## 项目结构
+```
+quote-card-generator/
+├── manifest.json        # 扩展配置文件
+├── background.js       # 后台服务脚本
+├── content.js         # 内容交互脚本
+├── content.css        # 内容样式文件
+├── popup.html         # 弹出窗口页面
+├── popup.js          # 弹出窗口脚本
+├── popup.css         # 弹出窗口样式
+├── html2canvas.min.js # 图片生成库
+├── images/           # 图标资源目录
+└── fonts/           # 字体资源目录
+```
+
+## 产品说明
 
 ## 产品概述
 
@@ -117,8 +169,8 @@
 
 我们非常重视用户的使用体验和建议。如果您在使用过程中遇到任何问题，或有任何改进建议，欢迎通过以下方式联系我们：
 
-- 提交问题：[GitHub Issues链接]
-- 功能建议：[反馈表单链接]
-- 邮件联系：[您的邮箱]
+- GitHub: https://github.com/HiSixcc
+- Email: admin@ntun.cn
+- Issues: https://github.com/HiSixcc/quote-card-generator/issues
 
 您的反馈将帮助我们不断改进产品，为用户提供更好的使用体验。 

@@ -73,7 +73,7 @@
 - Issues: https://github.com/HiSixcc/quote-card-generator/issues
 
 ## 最后更新
-2024年3月
+2025年3月
 
 ---
 
